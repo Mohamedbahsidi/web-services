@@ -38,7 +38,7 @@ public class ClientWS {
             String nom = sc.next();
             stub.newetudiant(nom, prenom);
             System.out.println("------------------------");
-            System.out.println("L'étudiant(e) "+prenom +" " + nom+ " a bien été ajouté à la base de donnée.");
+            System.out.println("L'étudiant(e) " + prenom + " " + nom + " a bien été ajouté à la base de donnée.");
             System.out.println("------------------------");
 
         } else if (choix == 2) {
@@ -52,15 +52,30 @@ public class ClientWS {
                 System.out.println("------------------------");
             }
         } else if (choix == 3) {
-            //modifier
-            System.out.println("Not implemented method");
+            // modifier
+            System.out.println("Entrez l'identifiant de l'étudiant à modifier:");
+            int id = sc.nextInt();
+            Etudiant e = stub.getOne(id);
+
+            System.out.println("-----------------------------------");
+            System.out.println("Informations sur l'étudiant à modifier:");
+            System.out.println("Prénom:" + e.getPrenom());
+            System.out.println("Nom:" + e.getNom());
+            System.out.println("-----------------------------------");
+
+            System.out.println("Entrez le nouveau prénom:");
+            String prenom = sc.next();
+
+            System.out.println("Entrez le nouveau nom:");
+            String nom = sc.next();
+            stub.update(e.getCode(), nom, prenom);
+
         } else if (choix == 4) {
             // supprimer
             System.out.println("Entrez l'identifiant de l'étudiant à supprimer:");
             int _id = sc.nextInt();
             stub.delete(_id);
-            System.out.println("L'étudiant avec l'id "+_id+ " a bien été supprimé.");
-
+            System.out.println("L'étudiant " + _id + " a bien été supprimé.");
 
         } else if (choix == 0) {
             // exit programm
